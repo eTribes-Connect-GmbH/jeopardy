@@ -1,0 +1,17 @@
+stages:
+#  - doCodeChecks
+#  - build
+  - deploy
+
+variables:
+  CI_DOCKER_REGISTRY_URL: docker-registry.test.etribes.de:5000
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - node_modules/
+    - vendor/
+
+include:
+#  - local: '/ci/pipelines/doCodeChecks.yml'
+  - local: '/ci/pipelines/deploy.yml'

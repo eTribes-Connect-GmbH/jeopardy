@@ -1,0 +1,10 @@
+buildDocker:
+  allow_failure: false
+  stage: build
+  image: docker:19.03.8
+  when: always
+  tags:
+    - docker
+    - leviathan
+  script:
+    - ash ci/pipelines/build/docker/build.sh

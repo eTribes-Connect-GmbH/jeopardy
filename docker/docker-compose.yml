@@ -1,0 +1,23 @@
+version: "3.7"
+
+services:
+  mysql:
+    image: percona:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: app
+      MYSQL_PASSWORD: app
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  shopware:
+    image: docker-registry.test.etribes.de:5000/shopware-6:6.1.5-2
+    env_file:
+      - ./.base.env
+      - ../.${ENV:-prod}.env
+    volumes:
+      - shopware-source:/sw6
+
+volumes:
+  shopware-source:
+  mysql-data:

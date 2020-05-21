@@ -1,0 +1,23 @@
+version: '3.7'
+
+services:
+  sftp:
+    image: docker-registry.test.etribes.de:5000/docker-sftp:1.0.0
+    ports:
+      - 127.0.0.1:22222:22
+    links:
+      - mysql
+      - shopware
+    volumes:
+      - shopware-source:/sw6
+
+  mysql:
+    ports:
+      - 127.0.0.1:3307:3306
+
+  shopware:
+    ports:
+      - 80:8000
+
+volumes:
+  shopware-source:

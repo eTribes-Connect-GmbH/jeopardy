@@ -1,0 +1,27 @@
+runPhpCs:
+  allow_failure: false
+  stage: doCodeChecks
+  when: always
+  image: ${CI_DOCKER_REGISTRY_URL}/docker-phpcs:3.5.4
+  script:
+    - ci/codestyle/do_code_check_phpcs.sh
+  tags:
+    - docker
+
+runPhpMd:
+  allow_failure: false
+  stage: doCodeChecks
+  image: ${CI_DOCKER_REGISTRY_URL}/docker-phpmd:2.8.2
+  tags:
+    - docker
+  script:
+    - ci/codestyle/do_code_check_phpmd.sh
+
+runEslint:
+  allow_failure: false
+  stage: doCodeChecks
+  image: ${CI_DOCKER_REGISTRY_URL}/docker-eslint:1.0.0
+  tags:
+    - docker
+  script:
+    - ci/codestyle/do_code_check_eslint.sh

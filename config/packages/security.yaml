@@ -1,23 +1,44 @@
 security:
-    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
-    providers:
-        users_in_memory: { memory: null }
-    firewalls:
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-        main:
-            anonymous: lazy
-            provider: users_in_memory
+  encoders:
+    App\Entity\User:
+      algorithm: auto
 
-            # activate different ways to authenticate
-            # https://symfony.com/doc/current/security.html#firewalls-authentication
+  # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+  providers:
+    # used to reload user from session & other features (e.g. switch_user)
+    app_user_provider:
+      entity:
+        class: App\Entity\User
+        property: email
+  firewalls:
+    dev:
+      pattern: ^/(_(profiler|wdt)|css|images|js)/
+      security: false
+    main:
+      #            provider: app_user_provider
+      anonymous: lazy
+      logout:
+        path: index_logout
+        target: index
 
-            # https://symfony.com/doc/current/security/impersonating_user.html
-            # switch_user: true
+      guard:
+        authenticators:
+          - App\Security\TokenAuthenticator
+        entry_point: App\Security\TokenAuthenticator
+      access_denied_handler: App\Security\AccessDeniedHandler
 
-    # Easy way to control access for large sections of your site
-    # Note: Only the *first* access control that matches will be used
-    access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+
+      # activate different ways to authenticate
+      # https://symfony.com/doc/current/security.html#firewalls-authentication
+
+      # https://symfony.com/doc/current/security/impersonating_user.html
+      # switch_user: true
+
+  # Easy way to control access for large sections of your site
+  # Note: Only the *first* access control that matches will be used
+  access_control:
+    - { path: ^/admin, roles: ROLE_ADMIN }
+    - { path: ^/content, roles: [ROLE_ADMIN, ROLE_CONTENT] }
+    - { path: ^/profile, roles: ROLE_USER }
+    - { path: ^/view, roles: ROLE_USER }
+    - { path: ^/welcome, roles: IS_AUTHENTICATED_FULLY }

@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h2>Welcome {{ user.given_name }}</h2>
+        <div class="row">
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ asset('build/images/stock-exchange-board-210607.jpg') }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">View Skills</h5>
+                        <p class="card-text">Show and filter skills</p>
+                        <a href="{{ path('view_index') }}" class="btn btn-primary">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ asset('build/images/analytics-blur-close-up-commerce-590020.jpg') }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Personal Account</h5>
+                        <p class="card-text">Manage your skills and stats</p>
+                        <a href="{{ path('profile_index') }}" class="card-link">Edit profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% if is_granted('ROLE_CONTENT') or is_granted('ROLE_ADMIN')%}
+        <h4 class="mt-5 mb-2">Admin area</h4>
+        <div class="row">
+            {% if is_granted('ROLE_CONTENT') %}
+                <div class="col">
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{ asset('build/images/close-up-of-hand-over-white-background-316465.jpg') }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Content</h5>
+                            <p class="card-text">Create and edit questions and skills</p>
+                            <a href="{{ path('skill_builder_tree') }}" class="card-link">Edit skills</a>
+                            <a href="{{ path('question_index') }}" class="card-link">Edit questions</a>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            {% if is_granted('ROLE_ADMIN') %}
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ asset('build/images/group-of-people-raise-their-hands-on-stadium-976866.jpg') }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">User Management</h5>
+                        <p class="card-text">Set roles on different Users</p>
+                        <a href="{{ path('user_index') }}" class="card-link">Edit users</a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        </ul>
+    </div>
+{% endblock %}

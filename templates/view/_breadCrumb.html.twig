@@ -1,0 +1,17 @@
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item" aria-current="page">
+                <a href="{{ path('view_index') }}">Start</a>
+            </li>
+            {% for entry in breadCrumb %}
+                <li class="breadcrumb-item" aria-current="page">
+                    <a href="{{ entry.path }}">{{ entry.name }}</a>
+                </li>
+            {% endfor %}
+            <li class="breadcrumb-item active" aria-current="page">
+                {{ skill.name }}
+            </li>
+        </ol>
+    </nav>
+</div>

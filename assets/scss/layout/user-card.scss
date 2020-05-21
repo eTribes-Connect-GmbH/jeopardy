@@ -1,0 +1,24 @@
+.user-card {
+    max-width: 300px;
+
+    &-img {
+        max-width: 40px;
+        border-radius: 100%;
+        overflow: hidden;
+    }
+
+    .card-body {
+        margin: 0;
+        padding: 0.5em;
+    }
+
+    .card-title {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .card-subtitle {
+        font-size: 0.75rem;
+        color: $secondary;
+    }
+}

@@ -1,3 +1,4 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+
+oops_an_error_occurred:
+    path: /oops_an_error_occurred
+    controller: App\Controller\ErrorController::errorAction

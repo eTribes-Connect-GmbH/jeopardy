@@ -1,0 +1,15 @@
+{% if user is defined and user is not empty %}
+    <div class="card user-card float-right">
+        <div class="card-body row">
+            <div class="col-2"><img src="{{ user.picture }}" class="user-card-img"></div>
+            <div class="col-10 d-none d-sm-block">
+                <h5 class="card-title">
+                    {{ user.nickname }}
+                    <a href="{{ path('index_logout') }}"><i class="fas fa-sign-out-alt"></i></a></h5>
+                <p class="card-subtitle">
+                    {{ user.email }}
+                </p>
+            </div>
+        </div>
+    </div>
+{% endif %}

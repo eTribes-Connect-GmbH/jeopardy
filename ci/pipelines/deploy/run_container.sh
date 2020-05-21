@@ -40,10 +40,10 @@ done
 
 echo "done"
 
-echo "Compiling themes"
-$DOCKER_EXEC exec -w /sw6/bin "${CONTAINER_NAME}" ./build-administration.sh
-$DOCKER_EXEC exec -w /sw6/bin "${CONTAINER_NAME}" ./build-storefront.sh
-$DOCKER_EXEC exec -w /sw6/bin "${CONTAINER_NAME}" ./console theme:compile
+#echo "Compiling themes"
+#$DOCKER_EXEC exec -w /sw6/bin "${CONTAINER_NAME}" ./build-administration.sh
+#$DOCKER_EXEC exec -w /sw6/bin "${CONTAINER_NAME}" ./build-storefront.sh
+#$DOCKER_EXEC exec -w /sw6/bin "${CONTAINER_NAME}" ./console theme:compile
 
 echo "Clearing cache"
 $DOCKER_EXEC exec -w /sw6/bin "${CONTAINER_NAME}" ./console cache:clear

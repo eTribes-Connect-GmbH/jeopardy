@@ -38,8 +38,8 @@ docker logout "${REGISTRY}"
   echo "Adding .${ENV}.env"
   cp ".${ENV}.env" "${BUILD_DIR_NAME}"
 
-  echo "Adding .${ENV}.htpasswd"
-  cp ".${ENV}.htpasswd" "${BUILD_DIR_NAME}"
+#  echo "Adding .${ENV}.htpasswd"
+#  cp ".${ENV}.htpasswd" "${BUILD_DIR_NAME}"
 
   echo "Adding ci/pipelines/deploy/run_container.sh"
   cp ci/pipelines/deploy/run_container.sh "${BUILD_DIR_NAME}"

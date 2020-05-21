@@ -3,7 +3,7 @@ deployTest:
   stage: deploy
   image: docker-registry.test.etribes.de:5000/docker-rsync-dind:1.0.0
   variables:
-    CONTAINER_NAME: "${CI_PROJECT_NAME}-symfony"
+    CONTAINER_NAME: "${CI_PROJECT_NAME}-shopware"
     ENV: test
     SSH_SERVER: etribes-projects.test
   tags:

@@ -4,6 +4,7 @@ ADD src /sw6
 
 USER root
 
+RUN apk add composer yarn
 RUN chown sw6:sw6 -R /sw6
 
 USER sw6

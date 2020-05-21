@@ -7,4 +7,5 @@ buildDocker:
     - docker
     - leviathan
   script:
+    - rm src/composer.lock
     - ash ci/pipelines/build/docker/build.sh

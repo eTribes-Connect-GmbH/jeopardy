@@ -1,0 +1,133 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    {% include 'view/_breadCrumb.html.twig' %}
+
+    <div class="container">
+        {{ viewResult.name }}
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Skill</th>
+                <th scope="col">all</th>
+                {% for user in viewResult.users %}
+                    <td scope="col">{{ user }}</td>
+                {% endfor %}
+            </tr>
+            </thead>
+            <tbody>
+                <tr class="table-secondary">
+                    <td><strong>{{ viewResult.name }}</strong></td>
+                    <td>
+                        <div class="progress mb-1">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: {{ 100 / 6 * viewResult.average }}%"
+                                 aria-valuenow="{{ viewResult.average }}"
+                                 aria-valuemin="0" aria-valuemax="6"></div>
+                        </div>
+                        <div class="progress mb-1">
+                            <div class="progress-bar bg-secondary" role="progressbar" style="width: {{ 100 / 6 * viewResult.highest }}%"
+                                 aria-valuenow="{{ viewResult.highest }}"
+                                 aria-valuemin="0" aria-valuemax="6"></div>
+                        </div>
+                        <div class="progress mb-1">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: {{ 100 / 6 * viewResult.children_average }} }}%"
+                                 aria-valuenow="{{ viewResult.children_average }} }}"
+                                 aria-valuemin="0" aria-valuemax="6"></div>
+                        </div>
+                        <span class="small">
+                            <span class="badge badge-primary">avarage: {{ viewResult.average }}/6</span>
+                            <span class="badge badge-secondary">highest: {{ viewResult.highest }}/6</span>
+                            <span class="badge badge-success">averageChild: {{ viewResult.children_average }}/6</span>
+                        </span>
+                    </td>
+                    {% for result in viewResult.userResults %}
+                        <td>
+                            <div class="progress mb-1">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: {{ 100 / 6 * result.result }}%"
+                                     aria-valuenow="{{ result.result }}"
+                                     aria-valuemin="0" aria-valuemax="6"></div>
+                            </div>
+                            <div class="progress mb-1">
+                                <div class="progress-bar bg-secondary" role="progressbar" style="width: {{ 100 / 6 * result.children_highest }}%"
+                                     aria-valuenow="{{ result.children_highest }}"
+                                     aria-valuemin="0" aria-valuemax="6"></div>
+                            </div>
+                            <div class="progress mb-1">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: {{ 100 / 6 * result.children_average }}%"
+                                     aria-valuenow="{{ result.children_average }}"
+                                     aria-valuemin="0" aria-valuemax="6"></div>
+                            </div>
+                            <span class="small">
+                                    <span class="badge badge-primary">result: {{ result.result }}/6</span>
+                                    <span class="badge badge-secondary">highest: {{ result.children_highest }}/6</span>
+                                    <span class="badge badge-success">averageChild: {{ result.children_average }}/6</span>
+                            </span>
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% for skill in viewResult.userSkillResult %}
+                <tr>
+                    <td scope="col">
+                        {% if skill.childCount > 0 %}
+                            <a href="{{ path('view_skill',{id:skill.skill_id}) }}">{{ skill.name }}</a>
+                        {% else %}
+                            {{ skill.name }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        <div class="progress mb-1">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: {{ 100 / 6 * skill.average }}%"
+                                 aria-valuenow="{{ skill.average }}"
+                                 aria-valuemin="0" aria-valuemax="6"></div>
+                        </div>
+                        <div class="progress mb-1">
+                            <div class="progress-bar bg-secondary" role="progressbar" style="width: {{ 100 / 6 * skill.highest }}%"
+                                 aria-valuenow="{{ skill.highest }}"
+                                 aria-valuemin="0" aria-valuemax="6"></div>
+                        </div>
+                        <div class="progress mb-1">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: {{ 100 / 6 * skill.children_average }} }}%"
+                                 aria-valuenow="{{ skill.children_average }} }}"
+                                 aria-valuemin="0" aria-valuemax="6"></div>
+                        </div>
+                        <span class="small">
+                            <span class="badge badge-primary">avarage: {{ skill.average }}/6</span>
+                            <span class="badge badge-secondary">highest: {{ skill.highest }}/6</span>
+                            <span class="badge badge-success">averageChild: {{ skill.children_average }}/6</span>
+                        </span>
+                    </td>
+                    {% for result in skill.userChildResults %}
+                        <td>
+{#                            {{ result.result }}#}
+                            <div class="progress mb-1">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: {{ 100 / 6 * result.result }}%"
+                                     aria-valuenow="{{ result.result }}"
+                                     aria-valuemin="0" aria-valuemax="6"></div>
+                            </div>
+                            <div class="progress mb-1">
+                                <div class="progress-bar bg-secondary" role="progressbar" style="width: {{ 100 / 6 * result.children_highest }}%"
+                                     aria-valuenow="{{ result.children_highest }}"
+                                     aria-valuemin="0" aria-valuemax="6"></div>
+                            </div>
+                            <div class="progress mb-1">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: {{ 100 / 6 * result.children_average }}%"
+                                     aria-valuenow="{{ result.children_average }}"
+                                     aria-valuemin="0" aria-valuemax="6"></div>
+                            </div>
+                            <span class="small">
+                                    <span class="badge badge-primary">result: {{ result.result }}/6</span>
+                                    <span class="badge badge-secondary">highest: {{ result.children_highest }}/6</span>
+                                    <span class="badge badge-success">averageChild: {{ result.children_average }}/6</span>
+                            </span>
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+            <tr>
+            </tbody>
+        </table>
+
+
+    </div>
+{% endblock %}

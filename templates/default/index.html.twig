@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body_container %}
+    <h1 class="display-4">Moin, etribes!</h1>
+    <ul>
+        {% for play in game %}
+            <li><a href="{{ path('defaultplay',{id:play.id}) }}">{{ play.name }}</a></li>
+        {% endfor %}
+        <li><a href="{{ path('defaultgame') }}">new game</a> </li>
+    </ul>
+{% endblock %}

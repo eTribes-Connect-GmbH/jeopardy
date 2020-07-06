@@ -7,19 +7,16 @@
 
 import $ from 'jquery';
 
-// this "modifies" the jquery module: adding behavior to it
-// require('datatables.net-dt')();
-// the bootstrap module doesn't export/return anything
 require('bootstrap');
-// require('./chart/donut');
+require('select2');
+require('select2/src/scss/core.scss');
+require('./chart/donut');
+require('./chart/radar');
+require('./layout/skill-filter-navigation')
+require('./layout/glossary')
 // any CSS you import will output into a single css file (app.css in this case)
 import '../scss/main.scss';
 
-// $('.toast').toast();
 
 
-// Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
 
-// $(document).ready(function () {
-//     $('[data-table]').DataTable();
-// });

@@ -1,0 +1,15 @@
+.players {
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        list-style: none;
+    }
+
+    &__item {
+        margin: 0 20px 20px;
+
+        &.active {
+            border-bottom: 2px solid $primary;
+        }
+    }
+}

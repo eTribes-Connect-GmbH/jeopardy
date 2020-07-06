@@ -17,28 +17,9 @@ security:
     main:
       #            provider: app_user_provider
       anonymous: lazy
-      logout:
-        path: index_logout
-        target: index
-
-      guard:
-        authenticators:
-          - App\Security\TokenAuthenticator
-        entry_point: App\Security\TokenAuthenticator
-      access_denied_handler: App\Security\AccessDeniedHandler
-
 
       # activate different ways to authenticate
       # https://symfony.com/doc/current/security.html#firewalls-authentication
 
       # https://symfony.com/doc/current/security/impersonating_user.html
       # switch_user: true
-
-  # Easy way to control access for large sections of your site
-  # Note: Only the *first* access control that matches will be used
-  access_control:
-    - { path: ^/admin, roles: ROLE_ADMIN }
-    - { path: ^/content, roles: [ROLE_ADMIN, ROLE_CONTENT] }
-    - { path: ^/profile, roles: ROLE_USER }
-    - { path: ^/view, roles: ROLE_USER }
-    - { path: ^/welcome, roles: IS_AUTHENTICATED_FULLY }

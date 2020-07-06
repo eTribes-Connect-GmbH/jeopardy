@@ -45,7 +45,6 @@ to: 'images/[path][name].[ext]',
 pattern: /\.(png|jpg|jpeg)$/
 })
 
-
     /*
      * FEATURE CONFIG
      *

@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Buzzword{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://cdn.tiny.cloud/1/emslghee1bhel44w4s57oc4n0w4th5hzqib7zl8w0bmbjdua/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            menubar: false,
+            plugins: [
+                'link code paste code wordcount'
+            ],
+            toolbar: 'undo redo | formatselect | ' +
+                'bold italic backcolor removeformat | help',
+        });
+    </script>
+{% endblock %}
+
+{% block body %}
+    <h1>Create new Buzzword</h1>
+
+    {{ include('buzzword/_form.html.twig') }}
+
+    <a href="{{ path('buzzword_index') }}">back to list</a>
+{% endblock %}

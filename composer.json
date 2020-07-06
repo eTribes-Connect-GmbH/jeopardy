@@ -6,7 +6,10 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "auth0/auth0-php": "~5.0",
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "phpmd/phpmd": "^2.8",
         "sensio/framework-extra-bundle": "^5.1",
+        "squizlabs/php_codesniffer": "*",
         "symfony/apache-pack": "^1.0",
         "symfony/asset": "5.0.*",
         "symfony/console": "5.0.*",
@@ -73,6 +76,30 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
+        ],
+        "docker:start": [
+            "docker-compose up -d"
+        ],
+        "docker:status": [
+            "docker-compose ps"
+        ],
+        "docker:stop": [
+            "docker-compose stop"
+        ],
+        "docker:logs": [
+            "docker-compose logs -f"
+        ],
+        "docker:exec": [
+            "docker-compose exec webserver bash"
+        ],
+        "code:sniff:php": [
+            "./vendor/bin/php-cs-fixer fix ./src --dry-run -vvv --using-cache false"
+        ],
+        "code:sniff:php-fix": [
+            "./vendor/bin/php-cs-fixer fix ./src -vvv --using-cache false"
+        ],
+        "code:sniff:php-md": [
+            "./vendor/bin/phpmd ./src text \"./phpmd_ruleset.xml\""
         ]
     },
     "conflict": {

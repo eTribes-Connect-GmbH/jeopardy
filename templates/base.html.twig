@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{% block title %}Skillz{% endblock %}</title>
-
+    <meta name="robots" content="noindex, nofollow, nosnippet, noimageindex">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('build/images/favicon-white-16.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('build/images/favicon-white-32.png') }}">
     {% block stylesheets %}
@@ -13,35 +13,40 @@
 </head>
 <body>
 
-<header class="page-header">
-    <div class="row">
-        <div class="col">
-            <a href="{{ path('index_welcome') }}">
-                {% include 'includes/logo.svg.twig' %}
-                {% include 'includes/skillz.html.twig' %}
-            </a>
+{% block body_wrapper %}
+    <div class="app">
+        <div class="col-main">
+            <header class="page-header">
+                <div class="row">
+                    <div class="col">
+                        {% include 'includes/logo.svg.twig' %}
+                        {% include 'includes/skillz.html.twig' %}
+                    </div>
+                </div>
+            </header>
+            <section class="message">
+                {% for label, messages in app.flashes(['success','warning', 'error','info','danger']) %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ label }} m-0">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </section>
+            {% block body_container %}
+            <section class="page-wrapper container-fluid">
+                {% block body %}{% endblock %}
+            </section>
+            {% endblock %}
         </div>
-        <div class="col">
-            {% include 'includes/user.html.twig' %}
-        </div>
+
     </div>
-</header>
-<section class="message">
-    {% for label, messages in app.flashes(['success','warning', 'error','info','danger']) %}
-        {% for message in messages %}
-            <div class="alert alert-{{ label }} m-0">
-                {{ message }}
-            </div>
-        {% endfor %}
-    {% endfor %}
-</section>
-{% block body_container %}
-    <section class="page-wrapper">
-        {% block body %}{% endblock %}
-    </section>
+
 {% endblock %}
 {% block footer %}
-    <img src="{{ asset('build/images/knowledge_is_king.png') }}" alt="knowledge_is_king">
+    <div class="container-fluid text-center">
+        <img class="w-50 float-right" style="width: 100%;" src="{{ asset('build/images/knowledge_is_king.png') }}" alt="knowledge_is_king">
+    </div>
 {% endblock %}
 {% block javascripts %}
     {{ encore_entry_script_tags('app') }}

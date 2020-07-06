@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body_container %}
+    <div class="players">
+        <ul class="players__list">
+            {% for player in players %}
+                <li class="players__item{% if player.active %} active{% endif %}">
+                <strong>{{ player.name }}:</strong> {{ player.result }}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="buzzword">
+        <div class="buzzword__container">
+            {% for title,buzzwords in category %}
+                <div class="buzzword__category">
+                    <strong class="buzzword__category--title">
+                        {{ title }}
+                    </strong>
+                    {% for buzzword in buzzwords %}
+                        <div class="buzzword__card{% if buzzword.played %} played{% endif %}">
+                            {% if buzzword.played %}
+                                {{ buzzword.title }}
+                            {% else %}
+                                <label for="{{ buzzword.id }}__play" class="label-points">{{ buzzword.points }}</label>
+                                <input type="radio" name="play" id="{{ buzzword.id }}__play" class="buzzword__show_answer hidden-input">
+                                <div class="buzzword__play">
+                                    <label class="buzzword__play-title" for="{{ buzzword.id }}__show">
+                                        {{ buzzword.title }}
+                                    </label>
+                                    <input type="checkbox" name="{{ buzzword.id }}__show" id="{{ buzzword.id }}__show" class="buzzword__show_play hidden-input">
+                                    <div class="buzzword__play--body">
+                                        <h3>{{ buzzword.title }}</h3>
+                                        {{ buzzword.description|raw }}
+                                        <hr>
+                                        <form method="post" action="{{ path('defaultplay',{'id': game,'playerId': next}) }}">
+                                            <input type="hidden" name="buzzwordId" value="{{ buzzword.id }}">
+                                            <input type="hidden" name="playerId" value="{{ current }}">
+                                            <input type="hidden" name="points" value="{{ buzzword.points }}">
+                                            <label>correct <input required="required" type="radio" name="answer" value="1" id="{{ buzzword.id }}__answer--yes"></label>
+                                            <label>wrong <input required="required" type="radio" name="answer" value="0" id="{{ buzzword.id }}__answer--no"></label>
+                                            <button class="btn btn-primary">send</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

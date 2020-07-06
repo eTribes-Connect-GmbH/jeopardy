@@ -1,10 +1,39 @@
 body {
-    background: $secondary;
-    color: $white;
+  color: $white;
 }
 
-.page-wrapper{
-    padding: 40px 0;
-    background-color: $white;
-    color: $secondary;
+.page-wrapper {
+  padding: 40px 0;
+  background-color: $white;
+  color: $secondary;
+  height: calc(100% - 95px);
+  max-width: calc(100vw - 75px);
+  width: calc(100vw - 75px);
+}
+
+.container-inner {
+  max-width: 800px;
+}
+
+//.container-fluid {
+//    max-width: calc(100% - 100px);
+//}
+
+.app {
+  display: flex;
+
+  .col-left {
+    flex: 1 1 15%;
+    max-width: 60px;
+    min-width: 60px;
+
+    &.active {
+      max-width: 160px;
+      min-width: 160px;
+    }
+  }
+
+  .col-main {
+    flex: 1 1 85%;
+  }
 }

@@ -20,144 +20,72 @@ class Result
     /**
      * @ORM\Column(type="integer")
      */
-    private $questionId;
+    private $gameId;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $skillId;
+    private $playerId;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $userId;
+    private $points;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $result;
-
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $learn;
-
-    /**
-     * @ORM\OneToOne(targetEntity=Question::class)
-     * @ORM\JoinColumn(name="question_id",referencedColumnName="id",nullable=false)
-     */
-    private $question;
-
-    /**
-     * **
-     * @ORM\ManyToOne(targetEntity="App\Entity\Skill", inversedBy="results")
-     * @ORM\JoinColumn(name="skill_id", referencedColumnName="id")
-     */
-    private $skill;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="results")
-     * @ORM\JoinColumn(name="user_id",referencedColumnName="id",nullable=false)
-     */
-    private $user;
+    private $buzzwordId;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getQuestionId(): ?int
+    public function getGameId(): ?int
     {
-        return $this->questionId;
+        return $this->gameId;
     }
 
-    public function setQuestionId(int $questionId): self
+    public function setGameId(int $gameId): self
     {
-        $this->questionId = $questionId;
+        $this->gameId = $gameId;
 
         return $this;
     }
 
-    public function getSkillId(): ?int
+    public function getPlayerId(): ?int
     {
-        return $this->skillId;
+        return $this->playerId;
     }
 
-    public function setSkillId(int $skillId): self
+    public function setPlayerId(int $playerId): self
     {
-        $this->skillId = $skillId;
+        $this->playerId = $playerId;
 
         return $this;
     }
 
-    public function getUserId(): ?int
+    public function getPoints(): ?int
     {
-        return $this->userId;
+        return $this->points;
     }
 
-    public function setUserId(int $userId): self
+    public function setPoints(int $points): self
     {
-        $this->userId = $userId;
+        $this->points = $points;
 
         return $this;
     }
 
-    public function getResult(): ?int
+    public function getBuzzwordId(): ?int
     {
-        return $this->result;
+        return $this->buzzwordId;
     }
 
-    public function setResult(int $result): self
+    public function setBuzzwordId(int $buzzwordId): self
     {
-        $this->result = $result;
-
-        return $this;
-    }
-
-    public function getLearn(): ?bool
-    {
-        return $this->learn;
-    }
-
-    public function setLearn(?bool $learn): self
-    {
-        $this->learn = $learn;
-
-        return $this;
-    }
-
-    public function getQuestion(): ?Question
-    {
-        return $this->question;
-    }
-
-    public function setQuestion(Question $question): self
-    {
-        $this->question = $question;
-
-        return $this;
-    }
-
-    public function getSkill(): ?Skill
-    {
-        return $this->skill;
-    }
-
-    public function setSkill(Skill $skill): self
-    {
-        $this->skill = $skill;
-
-        return $this;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(User $user): self
-    {
-        $this->user = $user;
+        $this->buzzwordId = $buzzwordId;
 
         return $this;
     }

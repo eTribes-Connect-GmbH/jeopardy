@@ -1,0 +1,100 @@
+.buzzword {
+
+    &__container {
+        display: flex;
+        width: calc(100% - 100px);
+        justify-content: space-between;
+        margin: 50px 50px;
+    }
+
+    &__category {
+        min-width: calc((100% / 7) - 20px);
+
+        &--title {
+            display: block;
+            text-align: center;
+        }
+    }
+
+    &__card {
+        position: relative;
+        background: #fff;
+        margin: 10px 0;
+        color: $secondary;
+        min-height: 80px;
+
+        > label {
+            position: absolute;
+            background: $secondary;
+            color: $primary;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #fff;
+        }
+
+        &.played {
+            background: #aaa;
+            color: #444;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    &__play {
+        display: none;
+        background: #fff;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+
+        &-title {
+
+        }
+
+        &--body {
+            display: none;
+            padding: 30px;
+            background: $secondary;
+            color: #fff;
+            z-index: 9999;
+            font-size: 2em;
+            border: 2px solid #fff;
+            box-shadow: 0 0 10px 10px $secondary;
+        }
+    }
+
+    &__show_answer:checked ~ .buzzword__play {
+        display: flex;
+    }
+
+    &__show_play:checked ~ .buzzword__play--body {
+        display: block;
+        position: fixed;
+        top: 20vh;
+        left: 10vw;
+        right: 10vw;
+        width: 80vw;
+    }
+}
+
+.hidden-input {
+    opacity: 0;
+}
+
+.label-points {
+    font-family: $customFontStack;
+}

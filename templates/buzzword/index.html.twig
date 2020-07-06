@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Buzzword index{% endblock %}
+
+{% block body %}
+    <h1>Buzzword index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Points</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for buzzword in buzzwords %}
+            <tr>
+                <td>{{ buzzword.id }}</td>
+                <td>{{ buzzword.title }}</td>
+                <td>{{ buzzword.catgory }}</td>
+                <td>{{ buzzword.points }}</td>
+                <td>{{ buzzword.description|raw }}</td>
+                <td>
+                    <a href="{{ path('buzzword_show', {'id': buzzword.id}) }}">show</a>
+                    <a href="{{ path('buzzword_edit', {'id': buzzword.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('buzzword_new') }}">Create new</a>
+{% endblock %}

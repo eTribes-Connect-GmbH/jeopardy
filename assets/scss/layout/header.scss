@@ -1,0 +1,21 @@
+.page-header {
+  padding: 20px;
+  position: relative;
+
+  &__logo-image {
+    max-width: 55px;
+    color: $white;
+  }
+
+  .page-title {
+    font-family: $customFontStack;
+    text-decoration: none;
+    color: $primary;
+    font-size: 20px;
+    position: absolute;
+    top: 35px;
+    left: 25px;
+    text-shadow: 0 0 3px $secondary;
+    transform: rotate(-15deg);
+  }
+}

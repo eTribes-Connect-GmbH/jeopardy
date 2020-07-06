@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body_container %}
+    <div class="container bg-dark">
+        <h1>Jeopardy</h1>
+        <a href="https://ourpastimes.com/official-rules-jeopardy-game-5344112.html" target="_blank">Rules</a>
+        <br><br>
+        <form method="post" action="{{ path('defaultgame') }}">
+            <div>
+                <label>
+                    Game Name
+                    <input type="text" name="game" required="required">
+                </label>
+            </div>
+            <br><br>
+            {% for i in range(1, 20) %}
+                <div>
+                    <label>
+                        player {{ i }}
+                        <input type="text" name="player[]" class="{{ i }}_field">
+                    </label>
+                </div>
+            {% endfor %}
+            <div>
+                <button type="submit" class="btn btn-primary">Start</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

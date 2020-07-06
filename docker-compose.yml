@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  webserver:
+    build: ./ci
+    ports:
+      - 127.0.0.1:80:8080
+    volumes:
+      - src_project:/var/www/htdocs/
+    links:
+      - mysql
+
+  mysql:
+    image: percona:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: app
+      MYSQL_PASSWORD: app
+      MYSQL_DATABASE: skillz
+    volumes:
+      - mysql-data:/var/lib/mysql
+    ports:
+      - 127.0.0.1:3306:3306
+
+  mailfetcher:
+    image: mailhog/mailhog:latest
+    restart: always
+    environment:
+      MH_HOSTNAME: skillz.local
+      TERM: xterm
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
+volumes:
+  mysql-data:
+  src_project:
+    driver: local
+    driver_opts:
+      type: none
+      device: $PWD
+      o: bind
